@@ -1,0 +1,266 @@
+/* =========================
+        GOOGLE FONT 
+============================*/
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+/* =========================
+        CSS VARIABLES 
+============================*/
+:root {
+  --blue-500: hsl(220, 98%, 61%);
+  --check-background: linear-gradient(
+    to right,
+    hsl(192, 100%, 67%),
+    hsl(280, 87%, 65%)
+  );
+
+  /* light colors */
+  --Gray-50: hsl(0, 0%, 98%);
+  --Purple-300: hsl(234, 39%, 85%);
+  --Gray-300: hsl(233, 11%, 84%);
+  --Gray-600: hsl(236, 9%, 61%);
+  --Navy-850: hsl(235, 19%, 35%);
+
+  /* dark colors */
+  --Navy-950: hsl(235, 21%, 11%);
+  --Navy-900: hsl(235, 24%, 19%);
+  --Purple-300: hsl(234, 39%, 85%);
+  --Purple-100: hsl(236, 33%, 92%);
+  --Purple-600: hsl(235, 16%, 43%);
+  --Purple-700: hsl(233, 14%, 35%);
+  --Purple-800: hsl(237, 14%, 26%);
+  --Gray-600: hsl(236, 9%, 61%);
+
+  /* typography */
+  --weight-400: 400;
+  --weight-700: 700;
+  --main-font: "Josefin Sans", sans-serif;
+
+  /* dark theme */
+  --body-bg: var(--Navy-950);
+  --app-bg: var(--Navy-900);
+  --primary-text-color: var(--Purple-100);
+  --secondry-text-color: var(--Purple-800);
+  --button-color: var(--Purple-600);
+  --hover: var(--Purple-600);
+  --border-color: var(--Purple-700);
+  --box-shaow: var(--Purple-700);
+}
+
+/* light theme */
+html.light {
+  --body-bg: var(--Gray-50);
+  --app-bg: #fff;
+  --primary-text-color: var(--Navy-850);
+  --secondry-text-color: var(--Gray-300);
+  --button-color: var(--Gray-600);
+  --hover: var(--Navy-850);
+  --box-shadow: rgba(99, 99, 99, 0.2);
+  --border-color: var(--Gray-300);
+}
+
+/* ============================
+    GLOBAL RULES & APP STYLING
+===============================*/
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--body-bg);
+  font-family: var(--main-font);
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  background-color: transparent;
+  font-family: var(--main-font);
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+.header {
+  width: 100vw;
+  height: 270px;
+}
+
+.header img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.app {
+  width: 650px;
+  position: absolute;
+  left: 50%;
+  top: 100px;
+  transform: translateX(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .app {
+    width: 90%;
+  }
+}
+
+/* =========================
+    APP HEADER 
+============================*/
+.app__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app__title {
+  color: white;
+  font-size: 44px;
+  font-weight: var(--weight-700);
+  letter-spacing: 4px;
+}
+
+/* =========================
+    APP INPUT CONTAINER
+============================*/
+.app__input-container {
+  width: 100%;
+  background-color: var(--app-bg);
+  padding: 20px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app__input {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  font-family: var(--main-font);
+  font-size: 16px;
+  font-weight: var(--weight-400);
+  color: var(--primary-text-color);
+}
+
+.app__button {
+  color: var(--button-color);
+  font-size: 16px;
+  transition: 0.2s;
+  font-weight: var(--weight-700);
+}
+
+.app__button--active,
+.app__button:hover {
+  color: var(--blue-500);
+}
+
+/* =========================
+    APP TODO CONTAINER 
+============================*/
+.app__todos-container {
+  background-color: var(--app-bg);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--box-shadow) 0px 2px 8px 0px;
+}
+
+/* ==== Todo List ==== */
+.app__todo {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--primary-text-color);
+  position: relative; /* for the remove button */
+}
+
+/* this span contains the todo text it self */
+.app__todo--completed > span {
+  color: var(--secondry-text-color);
+  text-decoration: line-through;
+}
+
+.app__todo--completed .app__check-btn {
+  background-image: var(--check-background);
+  border: none;
+}
+.app__todo--completed .app__check-icon {
+  display: block;
+}
+
+.app__check-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app__check-icon {
+  width: 12px;
+  height: 12px;
+  display: none;
+}
+
+.app__remove-btn {
+  position: absolute;
+  right: 20px;
+  scale: 0.8;
+  transition: 0.2s;
+}
+
+.app__remove-btn:hover {
+  scale: 1;
+  rotate: 360deg;
+}
+
+/* ==== App controls ==== */
+.app__controls {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.app__todo-left {
+  color: var(--button-color);
+}
+
+/* this is the div that contain showAll button, showActive button and showCompleted button */
+.app__controls > div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* media for app controls */
+@media screen and (max-width: 768px) {
+  .app__controls {
+    justify-content: center;
+  }
+  .app__todo-left,
+  .app__controls > .app__button:last-child {
+    display: none;
+  }
+
+  /* .app__controls > .app__controls-btn:last-child ---> this is the clear completed button */
+}
