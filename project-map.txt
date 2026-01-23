@@ -1,54 +1,67 @@
-requirments:
-      - adding a new todo when the add button or "Enter" is clicked
-      - on marking a todo change the todo style and the todo still marked whatever happened
-      - show the todos left that is not marked
-      - if show active button is clicked show only todos that is n't finished
-      - if show completed button is clicked show only todos that is finished
-      - if clear all button is clicked remove all todos
+Requirements: 
+     - Adding a new todo when the add button or "Enter" is clicked. 
+     - On marking a todo, change the todo style; the todo stays marked whatever happens. 
+     - Show the todos left that are not marked. 
+     - If the "Show Active" button is clicked, show only todos that aren't finished. 
+     - If the "Show Completed" button is clicked, show only todos that are finished. 
+     - If the "Clear All" button is clicked, remove all todos. 
 
-state management:
-      - save every todo in an object 
-      - the object will contain two props: 1- todo prop, 2- completed prop 3- id prop
-      - the todo prop is the property will contain the todo input value
-      - completed will contain a boolean value if the todo is completed
-      - the todo object will be saved in a todosArray
-      - if there is a todosArray saved in localStorage assign it to the todosArray
-      - else this means that there is no todos have been added so declare a new one
 
-main functions:
-      - handleTodoInput(todoInputValue)
-            1- will be called whenever add button or "Enter" is clicked
-            2- take the todo input value
-            3- make a new todo object
-            4- save the object in the todosArray
-            5- call the renderTodos()
-            6- save the todosArray to the localStorage
-      - renderTodos(todosArray)
-            1- loop through the todosArray
-            2- if the todo item is completed
-            3- setAttribute data-completed ="complted"
-            4- create the todo item 
-            5- give it class name app__todo--marked if it's completed
-      - markTodo(id)
-            1- get the index of the todo item that has the same id
-            2- give the todo element class app__todo--marked
-            3- change it's completed prop to true
-            4- update the localStorage
-      - removeTodo(id)
-            1- get the todo element by the index
-            2- remove the element from documnet
-            3- get the todo item by the index
-            4- remove it from the todosArray
-            5- update localStorage
-      - showAllTodos()
-            1- call renderTodos(todosArray)
-      - showActiveTodos()
-            1- make a new array of todos items that isn't completed
-            2- call the renderTodos(theNewArray)
-      - showCompletedTodos()
-            1- make a new array of todos items that is completed
-            2- call the renderTodos(theNewArray)
-      - clearAllTodos()
-            1- filter todosArray from todos that is completed
-            2- call renderTodos(new todosArray)
-            3- update localStorage
+State Management: 
+     - Save every todo in an object. 
+     - The object will contain three props: 1- todo prop, 2- completed prop, 3- id prop. 
+     - The todo prop is the property that will contain the todo input value. 
+     - completed will contain a boolean value indicating if the todo is completed. 
+     - The todo object will be saved in a todosArray. 
+     - If there is a todosArray saved in localStorage, assign it to the todosArray. 
+     - Else, this means that no todos have been added, so declare a new one. 
+
+
+Main Functions: 
+      addNewTodo(todoInputValue): 
+           1.Will be called whenever the add button or "Enter" is clicked. 
+           2.Takes the todo input value. 
+           3.Makes a new todo object. 
+           4.Saves the object in the todosArray. 
+           5.Calls the renderTodos(). 
+           6.Saves the todosArray to the localStorage. 
+
+
+      renderTodos(todosArray): 
+            1.Loops through the todosArray. 
+            2.Create the todo element. 
+            3.Give the todo element class name app__todo--marked if it's completed. 
+
+
+      toggleTodoStatus(id): 
+            1.Get the index of the todo item that has the same id. 
+            2.toggle todo element the class app__todo--marked. 
+            3.Change its completed prop to true if it was false and false if it was true. 
+            4.Update the localStorage. 
+
+
+      removeTodo(id): 
+            1.Get the index of the todo item that has the same id. 
+            2.Remove the element from the document. 
+            3.Get the todo item by the index. 
+            4.Remove it from the todosArray. 
+            5.Update localStorage. 
+
+
+      showAllTodos(): 
+            1.Calls renderTodos(todosArray). 
+
+      showActiveTodos(): 
+            1.Makes a new array of todo items that aren't completed. 
+            2.Calls the renderTodos(theNewArray). 
+
+
+      showCompletedTodos(): 
+            1.Makes a new array of todo items that are completed. 
+            2.Calls the renderTodos(theNewArray). 
+
+
+      clearCompletedTodos(): 
+            1.Filters todosArray from todos that are completed. 
+            2.Calls renderTodos(filtered todosArray). 
+            3.Updates localStorage.

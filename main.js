@@ -1,3 +1,9 @@
+/* 
+  note:
+    todo item is the object in the todosArray 
+    todo element is the element in the document
+*/
+
 // ================= HANDLE THEME TOGGLE ================= //
 const toggleThemeBtn = document.getElementById("toggle-theme-btn");
 const toggleThemeBtnIcon = document.getElementById("toggle-theme-btn-icon");
@@ -33,22 +39,24 @@ const todoInput = document.getElementById("todo-input");
 
 function addNewTodo(value) {
   if (value === "") return;
+  // add a new todo item
   todosArray.push({ id: Date.now(), todo: value, completed: false });
   renderTodos(todosArray);
   localStorage.setItem("todosArray", JSON.stringify(todosArray));
 }
 
+// on desktop
 document.addEventListener("keyup", (event) => {
   if (event.key === "Enter") {
     addNewTodo(todoInput.value);
-    showTodosLeft();
+    showTodosLeft(); // to make the todos left element up-to-date
     todoInput.value = "";
   }
 });
 
 addButton.addEventListener("click", () => {
   addNewTodo(todoInput.value);
-  showTodosLeft();
+  showTodosLeft(); // to make the todos left element up-to-date
   todoInput.value = "";
 });
 
@@ -114,9 +122,9 @@ function renderTodos(todos) {
 }
 renderTodos(todosArray);
 
-// ================= MARK TODO ================= //
+// ================= TOGGLE TODO STATUS ================= //
 function toggleTodoStatus(id) {
-  // get the index of todo that has the same id
+  // get the index of todo item that has the same id
   let todoIndex = todosArray.findIndex((todo) => todo.id === id);
 
   // give the todo elemetn app__todo--completed class
@@ -125,10 +133,14 @@ function toggleTodoStatus(id) {
 
   // get the todo item
   let todoItem = todosArray[todoIndex];
+
+  // toggle the completed property
   todoItem = { ...todoItem, completed: !todoItem.completed };
+
   // replace the old todo item with the new one
   todosArray.splice(todoIndex, 1, todoItem);
-  showTodosLeft();
+  showTodosLeft(); // to make the todos left element up-to-date
+
   // update localStorage
   localStorage.setItem("todosArray", JSON.stringify(todosArray));
 }
@@ -137,12 +149,14 @@ function toggleTodoStatus(id) {
 function removeTodo(id) {
   // get the index of todo that has the same id
   let todoIndex = todosArray.findIndex((todo) => todo.id === id);
+
   // remov todo element from document
   document.querySelectorAll(".app__todo")[todoIndex].remove();
 
   // remove todo item from todosArray & update localStorage
   todosArray.splice(todoIndex, 1);
-  showTodosLeft();
+  showTodosLeft(); // to make the todos left element up-to-date
+
   localStorage.setItem("todosArray", JSON.stringify(todosArray));
 }
 
@@ -170,13 +184,18 @@ function showActiveTodos() {
   renderTodos(notCompletedTodos);
 }
 
-showActiveBtn.addEventListener("click", () => {
-  showActiveTodos();
-  document
-    .querySelectorAll(".app__controls .app__button")
-    .forEach((btn) => btn.classList.remove("app__button--active"));
-  showActiveBtn.classList.add("app__button--active");
-});
+// secondry function just for control buttons
+function handleControlButtonsClass(button, action) {
+  button.addEventListener("click", () => {
+    action();
+    document
+      .querySelectorAll(".app__controls .app__button")
+      .forEach((btn) => btn.classList.remove("app__button--active"));
+    button.classList.add("app__button--active");
+  });
+}
+
+handleControlButtonsClass(showActiveBtn, showActiveTodos);
 
 // ================= SHOW COMPLETED TODOS ================= //
 const showCompletedBtn = document.getElementById("show-completed-btn");
@@ -187,13 +206,7 @@ function showCompletedTodos() {
   renderTodos(todosCompleted);
 }
 
-showCompletedBtn.addEventListener("click", () => {
-  showCompletedTodos();
-  document
-    .querySelectorAll(".app__controls .app__button")
-    .forEach((btn) => btn.classList.remove("app__button--active"));
-  showCompletedBtn.classList.add("app__button--active");
-});
+handleControlButtonsClass(showCompletedBtn, showCompletedTodos);
 
 // ================= CLEAR ALL TODOS ================= //
 const clearCompletedBtn = document.getElementById("clear-completed");
