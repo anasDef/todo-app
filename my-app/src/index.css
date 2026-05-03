@@ -41,6 +41,7 @@
   --color-button-bg: var(--brown);
   --color-button-text: var(--ivory);
   --color-header-border: #E7E5E4;
+  --color-stat-card-text: var(--brown);
 }
 
 /* Dark mode colors */
@@ -52,8 +53,9 @@
   --color-text: var(--ivory);
   --color-logo: var(--oat);
   --color-header-border: #393E46;
-  --color-button-bg: var(--taupe);
+  --color-button-bg: var(--oat);
   --color-button-text: var(--charcoal);
+  --color-stat-card-text: var(--oat);
 }
 
 /* global rules */
@@ -68,12 +70,19 @@ body {
   font-family: var(--font-primary);
   font-weight: var(--font-weight-regular);
   background-color: var(--color-bg);
+  overflow-x: hidden;
 }
 
 /* common classes */
 .container {
   width: 80%;
   margin-inline: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
 }
 
 .desktop-only {
@@ -87,13 +96,10 @@ body {
 }
 
 .overlay {
-  width: 100vw;
-  height: 100vh;
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   background-color: #000;
-  opacity: 0.5;
+  opacity: 0.7;
 }
 
 .button {

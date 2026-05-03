@@ -26,9 +26,9 @@ function App() {
   return (
     <main className="app">
         <Header setTasksView={setTasksView} theme={theme} setTheme={setTheme}/>
-        <Stats tasks={tasks} userName={userName}/>
-        <AddTask onAddClick={setTodos} theme={theme}/>
-        <TodosList tasks={todos} view={tasksView} theme={theme}/>
+        <Stats user={userName} tasks={tasks}/>
+        <AddTask/>
+        <TodosList />
         {
           JSON.parse(localStorage.getItem("userName")) == "" ? <UserName handleEnterClick={handleEnterNameClick}/> : null
         }

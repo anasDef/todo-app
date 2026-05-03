@@ -1,11 +1,20 @@
 import "./UserName.css"
 import { FaRegUser } from "react-icons/fa";
-import { useState } from "react"; // for input
+import { useEffect, useState } from "react"; // for input
 
 export default function UserName({handleEnterClick}) {
     const [name, setName] = useState("");
     const [closeSection, setCloseSection] = useState(false);
     const handleInputChange = (e) => setName(e.target.value);
+
+    useEffect(() => {
+        document.body.addEventListener("keyup", (e) => {
+            if(e.key == "Enter" && name.length > 2) {
+                handleEnterClick(name)
+                setCloseSection(true)
+            } 
+        })
+    }, [name])
 
     return (
         <div className="user-name" style={closeSection ? {display: "none"} : null}>
