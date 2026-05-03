@@ -22,12 +22,16 @@ function App() {
     setUserName(name);
   }
 
+  const handleAddTaskClick = (taskObject) => {
+    setTasks([...tasks, taskObject]);
+  }
+
 
   return (
     <main className="app">
-        <Header setTasksView={setTasksView} theme={theme} setTheme={setTheme}/>
-        <Stats user={userName} tasks={tasks}/>
-        <AddTask/>
+        {/* <Header setTasksView={setTasksView} theme={theme} setTheme={setTheme}/>
+        <Stats user={userName} tasks={tasks}/> */}
+        <AddTask handleAddTaskClick={handleAddTaskClick}/>
         <TodosList />
         {
           JSON.parse(localStorage.getItem("userName")) == "" ? <UserName handleEnterClick={handleEnterNameClick}/> : null

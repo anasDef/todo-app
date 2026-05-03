@@ -1,0 +1,233 @@
+.add-task {
+  /* Section shell */
+  width: 100%;
+  min-height: 100vh;
+  padding-block: var(--space-3);
+  color: var(--color-text);
+
+  .add-task__container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .add-task__card {
+    /* Main Figma card */
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 42rem);
+    padding: var(--space-4);
+    overflow: hidden;
+    background-color: var(--color-add-task-bg);
+    border-radius: var(--space-2);
+    box-shadow: 0 var(--space-1) var(--space-4)
+      color-mix(in srgb, var(--charcoal) 4%, transparent);
+  }
+
+  .add-task__header,
+  .add-task__actions,
+  .add-task__priority-grid,
+  .add-task__priority-name {
+    display: flex;
+    align-items: center;
+  }
+
+  .add-task__header,
+  .add-task__actions {
+    justify-content: space-between;
+  }
+
+  .add-task__title,
+  .add-task__label,
+  .add-task__submit {
+    font-family: var(--font-primary);
+    font-weight: var(--font-weight-bold);
+  }
+
+  .add-task__input,
+  .add-task__priority-card {
+    border: 1px solid var(--color-accent-2);
+  }
+
+  .add-task__form,
+  .add-task__field,
+  .add-task__priority,
+  .add-task__priority-card {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .add-task__form {
+    /* Vertical form rhythm */
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+  }
+
+  .add-task__field {
+    gap: var(--space-1);
+  }
+
+  .add-task__title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+  }
+
+  .add-task__label {
+    font-size: 1rem;
+    line-height: 0.875;
+    letter-spacing: 0.044em;
+  }
+
+  .add-task__icon-button {
+    /* Decorative close control for static preview */
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-task__input {
+    /* Shared input and textarea surface */
+    min-height: 2.625rem;
+    padding: 0.75rem var(--space-2);
+    color: var(--color-stat-card-text);
+    background-color: var(--color-bg);
+    border-radius: var(--space-1);
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    line-height: 1.25;
+  }
+
+  .add-task__input::placeholder {
+    color: var(--color-stat-card-text);
+    opacity: 0.5;
+  }
+
+  .add-task__input--textarea {
+    min-height: 7rem;
+    resize: none;
+  }
+
+  .add-task__priority {
+    /* Radio group wrapper */
+    gap: var(--space-2);
+    padding-top: var(--space-1);
+    border: 0;
+  }
+
+  .add-task__priority-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-1);
+  }
+
+  .add-task__priority-card {
+    /* Radio label card */
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    min-height: 5.25rem;
+    gap: calc(var(--space-1) / 2);
+    padding: var(--space-2);
+    border-radius: var(--space-2);
+    text-align: center;
+    cursor: pointer;
+    opacity: 0.5;
+    scale: 0.9;
+    transition: 0.2s ease;
+  }
+  .add-task__priority-card:has(:checked) {
+    opacity: 1;
+    scale: 1;
+  }
+
+  .add-task__priority-card--important {
+    color: var(--important-flag-text);
+    background-color: var(--important-flag-bg);
+  }
+
+  .add-task__priority-card--normal {
+    color: var(--normal-flag-text);
+    background-color: var(--normal-flag-bg);
+  }
+
+  .add-task__priority-card--low {
+    color: var(--not-important-flag-text);
+    background-color: var(--not-important-flag-bg);
+    opacity: 0.7;
+  }
+
+  .add-task__priority-input {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .add-task__priority-name {
+    justify-content: center;
+    gap: var(--space-1);
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .add-task__priority-dot {
+    width: var(--space-1);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: currentColor;
+  }
+
+  .add-task__priority-note {
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    line-height: 1.4;
+  }
+
+  .add-task__actions {
+    /* Bottom aligned submit preview */
+    padding-top: var(--space-4);
+    justify-content: flex-end;
+  }
+
+  .add-task__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-1);
+    min-height: 2.875rem;
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-button-text);
+    background-color: var(--color-button-bg);
+    border: 0;
+    border-radius: var(--space-1);
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0.044em;
+  }
+
+  .add-task__submit-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+
+  @media screen and (max-width: 768px) {
+    .add-task__card {
+      padding: var(--space-3);
+    }
+
+    .add-task__title {
+      font-size: 2rem;
+    }
+
+    .add-task__priority-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .add-task__submit {
+      width: 100%;
+    }
+  }
+}

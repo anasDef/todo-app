@@ -30,6 +30,12 @@
   --oat: #dfd0b8;
   --white: #fff;
   --brown: #6B5C47;
+  --important-flag-bg: #FFDAD6;
+  --normal-flag-bg: #CCF2B4;
+  --normal-flag-text: #327606;
+  --not-important-flag-bg: #FFF2B4;
+  --not-important-flag-text: #A18500;
+  --important-flag-text: #BA1A1A;
 
   /* Light mode semantic colors */
   --color-bg: var(--ivory);
@@ -42,6 +48,7 @@
   --color-button-text: var(--ivory);
   --color-header-border: #E7E5E4;
   --color-stat-card-text: var(--brown);
+  --color-add-task-bg: var(--white);
 }
 
 /* Dark mode colors */
@@ -56,6 +63,7 @@
   --color-button-bg: var(--oat);
   --color-button-text: var(--charcoal);
   --color-stat-card-text: var(--oat);
+  --color-add-task-bg: var(--slate);
 }
 
 /* global rules */
@@ -71,6 +79,17 @@ body {
   font-weight: var(--font-weight-regular);
   background-color: var(--color-bg);
   overflow-x: hidden;
+}
+
+input,
+button,
+textarea {
+  outline: none;
+}
+
+button {
+  background-color: transparent;
+  border: none;
 }
 
 /* common classes */
@@ -110,7 +129,12 @@ body {
   font-weight: var(--font-weight-regular);
   color: var(--color-button-text);
   border-radius: 12px;
+  width: 150px;
   height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
   cursor: pointer;
   transition: 0.2s ease;
 
