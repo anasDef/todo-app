@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Lexend:wght@400;700&display=swap");
+
+:root {
+  /* Typography */
+  --font-primary: "Josefin Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  --font-secondary: "Lexend", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  --font-weight-regular: 400;
+  --font-weight-bold: 700;
+
+  /* Spacing (8pt grid system) */
+  --space-1: 8px;
+  --space-2: 16px;
+  --space-3: 24px;
+  --space-4: 32px;
+  --space-5: 40px;
+  --space-6: 48px;
+  --space-7: 56px;
+  --space-8: 64px;
+
+  /* Base palette (raw colors from DESIGN.md) */
+  --ivory: #FEF8F5;
+  --sand: #efe9e3;
+  --stone: #d9cfc7;
+  --tan: #c9b59c;
+  --charcoal: #222831;
+  --slate: #393e46;
+  --taupe: #948979;
+  --oat: #dfd0b8;
+  --white: #fff;
+  --brown: #6B5C47;
+
+  /* Light mode semantic colors */
+  --color-bg: var(--ivory);
+  --color-surface: var(--sand);
+  --color-accent-1: var(--stone);
+  --color-accent-2: var(--tan);
+  --color-text: var(--charcoal);
+  --color-logo: var(--brown);
+  --color-button-bg: var(--brown);
+  --color-button-text: var(--ivory);
+  --color-header-border: #E7E5E4;
+}
+
+/* Dark mode colors */
+[data-theme="dark"] {
+  --color-bg: var(--charcoal);
+  --color-surface: var(--slate);
+  --color-accent-1: var(--taupe);
+  --color-accent-2: var(--oat);
+  --color-text: var(--ivory);
+  --color-logo: var(--oat);
+  --color-header-border: #393E46;
+  --color-button-bg: var(--taupe);
+  --color-button-text: var(--charcoal);
+}
+
+/* global rules */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-regular);
+  background-color: var(--color-bg);
+}
+
+/* common classes */
+.container {
+  width: 80%;
+  margin-inline: auto;
+}
+
+.desktop-only {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.button {
+  background-color: var(--color-button-bg);
+  border: none;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-button-text);
+  border-radius: 12px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.2s ease;
+
+  &:hover {
+      opacity: 0.9;
+  }
+
+  &.disabled {
+      opacity: 0.2;
+      pointer-events: none;
+  }
+}
