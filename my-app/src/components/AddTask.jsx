@@ -140,7 +140,7 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
             {/* Static action preview */}
             <div className="add-task__actions">
               <button
-                className="button"
+                className={`button ${task.taskName.length < 1 ? "disabled" : ""}`}
                 type="button"
                 onClick={() => {
                   handleAddTaskClick({
