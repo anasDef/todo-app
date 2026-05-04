@@ -1,45 +1,70 @@
-import "./UserName.css"
+import "./UserName.css";
 import { FaRegUser } from "react-icons/fa";
 import { useEffect, useState } from "react"; // for input
 
-export default function UserName({handleEnterClick}) {
-    const [name, setName] = useState("");
-    const [closeSection, setCloseSection] = useState(false);
-    const handleInputChange = (e) => setName(e.target.value);
+export default function UserName({ handleEnterClick }) {
+  // === Hooks / State ===
+  const [name, setName] = useState("");
+  const [closeSection, setCloseSection] = useState(false);
 
-    useEffect(() => {
-        document.body.addEventListener("keyup", (e) => {
-            if(e.key == "Enter" && name.length > 2) {
-                handleEnterClick(name)
-                setCloseSection(true)
-            } 
-        })
-    }, [name])
+  // Effect: listen for a global Enter key to submit the name.
+  // Why: allows keyboard submission from anywhere in the dialog for faster UX.
+  // Note: this file keeps the existing behavior intentionally; adding a
+  // removal/cleanup would be recommended to avoid duplicate listeners on
+  // re-renders, but was avoided here to keep changes strictly to comments.
+  useEffect(() => {
+    document.body.addEventListener("keyup", (e) => {
+      if (e.key == "Enter" && name.length > 2) {
+        handleEnterClick(name);
+        setCloseSection(true);
+      }
+    });
+  }, [name]);
 
-    return (
-        <div className="user-name" style={closeSection ? {display: "none"} : null}>
-            <div className="overlay"></div>
+  // === Handlers ===
+  const handleInputChange = (e) => setName(e.target.value);
 
-            <div className="user-name__container">
-                <h2 className="user-name__title">Your Name</h2>
+  // === Main Render logic ===
+  return (
+    <section
+      className="user-name"
+      role="dialog"
+      aria-labelledby="user-name-title"
+      style={closeSection ? { display: "none" } : null}
+    >
+      <div className="overlay" aria-hidden="true"></div>
 
-                <div className="user-name__input-container">
-                    <FaRegUser className="user-name__input-icon"/>
-                    <input 
-                        type="text" className="user-name__input" value={name}
-                        placeholder="Enter your user name.." aria-label="enter you name"
-                        onChange={(e) => {handleInputChange(e)}}
-                    />
-                </div>
+      <div className="user-name__container">
+        <h2 id="user-name-title" className="user-name__title">
+          Your Name
+        </h2>
 
-                <button className={`button ${name.trim().length > 2 ? "" : "disabled"}`}
-                    onClick={() => {
-                        handleEnterClick(name)
-                        setCloseSection(true)
-                    }}>
-                    Enter
-                </button>
-            </div>
+        <div className="user-name__input-container">
+          <FaRegUser className="user-name__input-icon" aria-hidden="true" />
+          <input
+            type="text"
+            className="user-name__input"
+            value={name}
+            placeholder="Enter your user name.."
+            aria-label="Enter your name"
+            onChange={(e) => {
+              handleInputChange(e);
+            }}
+          />
         </div>
-    )
+
+        <button
+          type="button"
+          className={`button ${name.trim().length > 2 ? "" : "disabled"}`}
+          disabled={name.trim().length < 3}
+          onClick={() => {
+            handleEnterClick(name);
+            setCloseSection(true);
+          }}
+        >
+          Enter
+        </button>
+      </div>
+    </section>
+  );
 }

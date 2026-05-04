@@ -5,6 +5,7 @@ import { getFormattedDate } from "../utils/utils";
 import "./AddTask.css";
 
 function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
+  // === Hooks / State ===
   const [task, setTask] = useState({
     taskName: "",
     description: "",
@@ -12,10 +13,17 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
     type: "normal",
   });
 
+  // === Handlers ===
+  /**
+   * Update a single property on the task state object.
+   * @param {Event} event - change event from the input/textarea/radio
+   * @param {string} key - task property to update (e.g. 'taskName', 'description', 'type')
+   */
   const handleInputChange = (event, key) => {
     setTask({ ...task, [key]: event.target.value });
   };
 
+  // === Main Render logic ===
   return (
     <section className={`add-task ${showAddTask ? "add-task--active" : ""}`}>
       <div className="add-task__container container">
@@ -43,6 +51,7 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
                 Task Name
               </label>
               <input
+                id="task-name"
                 className="add-task__input"
                 name="task-name"
                 placeholder="What needs to be done?"
@@ -142,6 +151,7 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
               <button
                 className={`button ${task.taskName.length < 1 ? "disabled" : ""}`}
                 type="button"
+                disabled={task.taskName.length < 1}
                 onClick={() => {
                   handleAddTaskClick({
                     ...task,

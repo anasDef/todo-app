@@ -1,3 +1,8 @@
+/* ===== Block: todos =====
+  Layout and component styles for task list and its controls.
+  BEM: .todos (block) and its elements/modifiers grouped below.
+*/
+
 .todos {
   width: 100%;
   padding-block: var(--space-3);

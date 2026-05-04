@@ -19,25 +19,44 @@ function TodosList({
   handleCheckTaskClick,
   handleTaskClick,
 }) {
+  // === Hooks / State ===
+  // Map task types to their flag images (kept local and static for readability)
   const typeImages = {
     important: important,
     normal: normal,
     notImportant: notImportant,
   };
 
+  // Build accessible task list: each entry is a listitem with an
+  // `aria-labelledby` pointing to the task title so assistive tech reads
+  // a concise label for each item.
   const tasksList = tasks.map((task) => (
-    <div className={`todos__task todos__task--${task.state}`}>
+    <div
+      key={task.id}
+      role="listitem"
+      className={`todos__task todos__task--${task.state}`}
+      aria-labelledby={`task-title-${task.id}`}
+    >
       <div className="todos__task-left">
         <button
+          type="button"
           className={`todos__task-check ${
             task.state === "completed" ? "todos__task-check--checked" : ""
           }`}
+          aria-pressed={task.state === "completed"}
+          aria-label={
+            task.state === "completed"
+              ? "Mark task as not completed"
+              : "Mark task as completed"
+          }
           onClick={() => {
             handleCheckTaskClick(task.id);
           }}
         ></button>
         <div className="todos__task-info">
-          <h3 className="todos__task-title">{task.taskName}</h3>
+          <h3 id={`task-title-${task.id}`} className="todos__task-title">
+            {task.taskName}
+          </h3>
           <p className="todos__task-description">
             {task.description ? task.description : "No description"}
           </p>
@@ -47,21 +66,25 @@ function TodosList({
       <div className="todos__task-right">
         <div className="todos__task-buttons">
           <button
+            type="button"
             className="todos__task-button todos__task-button--delete"
+            aria-label="Delete task"
             onClick={() => {
               handleDeleteTaskClick(task.id);
             }}
           >
-            <FaRegTrashAlt />
+            <FaRegTrashAlt aria-hidden="true" />
           </button>
 
           <button
+            type="button"
             className="todos__task-button todos__task-button--start"
+            aria-label="Start task"
             onClick={() => {
               handleTaskClick(task.id);
             }}
           >
-            <VscDebugStart />
+            <VscDebugStart aria-hidden="true" />
           </button>
         </div>
 
@@ -72,6 +95,8 @@ function TodosList({
 
   const [showControls, setShowControls] = useState(false);
 
+  // === Handlers ===
+  // Toggle filter controls visibility
   const handleToggleClick = () => {
     setShowControls(!showControls);
   };
@@ -107,13 +132,18 @@ function TodosList({
     return (
       <button
         key={item.id}
+        type="button"
         onClick={item.function}
+        aria-pressed={item.value == filter}
+        aria-label={`Show ${item.name} tasks`}
         className={`todos__control-button ${item.value == filter ? "todos__control-button--active" : ""}`}
       >
         {item.name}
       </button>
     );
   });
+
+  // === Main Render logic ===
 
   return (
     <section className="todos">
@@ -122,21 +152,30 @@ function TodosList({
           <h2 className="todos__title">Your Tasks</h2>
 
           <div className="todos__control-buttons">
-            <ul
+            <div
+              id="todos-controls"
+              role="toolbar"
+              aria-label="Task filters"
               className={`todos__control-buttons-list ${showControls ? "todos__control-buttons-list--active" : ""}`}
             >
               {controlButtonsList}
-            </ul>
+            </div>
             <button
+              type="button"
               className="todos__control-button todos__control-button--toggle"
+              aria-expanded={showControls}
+              aria-controls="todos-controls"
+              aria-label={showControls ? "Hide filters" : "Show filters"}
               onClick={handleToggleClick}
             >
-              <VscSettings />
+              <VscSettings aria-hidden="true" />
             </button>
           </div>
         </header>
 
-        <div className={`todos__list todos__list--${view}`}>{tasksList}</div>
+        <div role="list" className={`todos__list todos__list--${view}`}>
+          {tasksList}
+        </div>
       </div>
     </section>
   );

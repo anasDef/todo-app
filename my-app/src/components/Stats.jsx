@@ -8,6 +8,8 @@ import { getFormattedDate } from "../utils/utils";
 import "./Stats.css";
 
 export default function Stats({ user, tasks, handleNewTaskClick }) {
+  // === Hooks / State ===
+  // Derived counts used only for presentation to keep render markup simple.
   const notStartedTasksCount = tasks.filter(
     (task) => task.state === "not-started",
   ).length;
@@ -18,6 +20,7 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
     (task) => task.state === "completed",
   ).length;
 
+  // === Main Render logic ===
   return (
     <section className="stats">
       <div className="stats__container container">
@@ -38,7 +41,7 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
             className="stats__cta"
             onClick={handleNewTaskClick}
           >
-            <MdAdd className="stats__cta-icon" aria-hidden />
+            <MdAdd className="stats__cta-icon" aria-hidden="true" />
             <span className="stats__cta-label">New Task</span>
           </button>
         </header>
@@ -48,7 +51,10 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
             <div className="stats__card-inner">
               <div className="stats__card-header">
                 <span className="stats__card-label">Not started</span>
-                <IoHourglassOutline className="stats__card-icon" aria-hidden />
+                <IoHourglassOutline
+                  className="stats__card-icon"
+                  aria-hidden="true"
+                />
               </div>
               <div className="stats__card-body">
                 <span className="stats__card-value">
@@ -64,7 +70,10 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
             <div className="stats__card-inner">
               <div className="stats__card-header">
                 <span className="stats__card-label">In progress</span>
-                <IoRefreshOutline className="stats__card-icon" aria-hidden />
+                <IoRefreshOutline
+                  className="stats__card-icon"
+                  aria-hidden="true"
+                />
               </div>
               <div className="stats__card-body">
                 <span className="stats__card-value">
@@ -84,7 +93,7 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
                 <span className="stats__card-label">Completed</span>
                 <IoCheckmarkCircleOutline
                   className="stats__card-icon"
-                  aria-hidden
+                  aria-hidden="true"
                 />
               </div>
               <div className="stats__card-body">
@@ -94,7 +103,7 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
                 <span className="stats__card-description">Done this week</span>
               </div>
             </div>
-            <span className="stats__card-accent" aria-hidden />
+            <span className="stats__card-accent" aria-hidden="true" />
           </article>
         </div>
       </div>

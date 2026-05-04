@@ -1,3 +1,8 @@
+/* ===== Block: stats =====
+  Dashboard summary cards and welcome message styles.
+  Elements grouped as BEM (welcome, cards, CTA, grid).
+*/
+
 .stats {
   padding-block: var(--space-4);
   color: var(--color-text);
@@ -220,15 +225,15 @@
     }
 
     .stats__card--completed {
-        grid-area: completed;
+      grid-area: completed;
     }
 
     .stats__card--in-progress {
-        grid-area: progress;
+      grid-area: progress;
     }
 
     .stats__card--not-started {
-        grid-area: not-started;
+      grid-area: not-started;
     }
 
     .stats__cta {
@@ -238,8 +243,8 @@
 
   @media screen and (max-width: 991px) {
     .stats__welcome-message {
-        flex-direction: column;
-        align-items: stretch;
+      flex-direction: column;
+      align-items: stretch;
     }
   }
 }

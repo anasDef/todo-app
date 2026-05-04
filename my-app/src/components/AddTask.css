@@ -1,3 +1,7 @@
+/* ===== Block: add-task =====
+   Overlay + task card styles (BEM: add-task and elements).
+*/
+
 .add-task {
   /* Section shell */
   transform: translateX(-100%);
