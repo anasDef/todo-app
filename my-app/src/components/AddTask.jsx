@@ -121,7 +121,7 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
                     className="add-task__priority-input"
                     name="priority"
                     type="radio"
-                    value="not-important"
+                    value="notImportant"
                     onChange={(e) => {
                       handleInputChange(e, "type");
                     }}

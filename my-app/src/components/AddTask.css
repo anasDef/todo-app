@@ -6,7 +6,7 @@
   min-height: 100vh;
   padding-block: var(--space-3);
   color: var(--color-text);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 10;

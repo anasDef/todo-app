@@ -12,6 +12,7 @@ function App() {
   const [theme, setTheme] = useLocalStorage("theme", "light");
   const [userName, setUserName] = useLocalStorage("userName", "");
   const [tasks, setTasks] = useLocalStorage("tasks", []);
+  const [filter, setFilter] = useState("all");
   const [showAddTask, setShowAddTask] = useState(false);
 
   // ======= USE EFFECTS ======== //
@@ -32,6 +33,48 @@ function App() {
     setShowAddTask(!showAddTask);
   };
 
+  const handleTaskClick = (id) => {
+    setTasks(
+      [...tasks].map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              state: task.state === "active" ? "not-started" : "active",
+            }
+          : task,
+      ),
+    );
+  };
+
+  const handleDeleteTaskClick = (id) => {
+    setTasks([...tasks].filter((task) => task.id !== id));
+  };
+
+  const handleCheckTaskClick = (id) => {
+    setTasks(
+      [...tasks].map((task) =>
+        task.id === id
+          ? {
+              ...task,
+              state: task.state === "completed" ? "active" : "completed",
+            }
+          : task,
+      ),
+    );
+  };
+
+  const handleActiveTaskClick = () => setFilter("active");
+  const handleCompletedTaskClick = () => setFilter("completed");
+  const handleAllTaskClick = () => setFilter("all");
+  const handleNotStartedTaskClick = () => setFilter("not-started");
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === "active") return task.state === "active";
+    if (filter === "completed") return task.state === "completed";
+    if (filter === "not-started") return task.state === "not-started";
+    return true; // في حال كان الفلتر "all"
+  });
+
   return (
     <main className="app">
       <Header setTasksView={setTasksView} theme={theme} setTheme={setTheme} />
@@ -48,7 +91,18 @@ function App() {
         showAddTask={showAddTask}
       />
 
-      <TodosList />
+      <TodosList
+        view={tasksView}
+        tasks={filteredTasks}
+        filter={filter}
+        handleActive={handleActiveTaskClick}
+        handleAll={handleAllTaskClick}
+        handleCompleted={handleCompletedTaskClick}
+        handleNotStarted={handleNotStartedTaskClick}
+        handleTaskClick={handleTaskClick}
+        handleDeleteTaskClick={handleDeleteTaskClick}
+        handleCheckTaskClick={handleCheckTaskClick}
+      />
 
       {JSON.parse(localStorage.getItem("userName")) == "" ? (
         <UserName handleEnterClick={handleEnterNameClick} />

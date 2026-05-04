@@ -50,6 +50,8 @@
   --color-header-border: #e7e5e4;
   --color-stat-card-text: var(--brown);
   --color-add-task-bg: var(--white);
+  --color-check-box-bg: var(--brown);
+  --color-subtext: var(--brown);
 }
 
 /* Dark mode colors */
@@ -65,6 +67,8 @@
   --color-button-text: var(--charcoal);
   --color-stat-card-text: var(--oat);
   --color-add-task-bg: var(--slate);
+  --color-check-box-bg: var(--taupe);
+  --color-subtext: var(--oat);
 }
 
 /* global rules */
