@@ -1,9 +1,20 @@
 .add-task {
   /* Section shell */
+  transform: translateX(-100%);
   width: 100%;
+  background-color: #000000b0;
   min-height: 100vh;
   padding-block: var(--space-3);
   color: var(--color-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: transform 0.3s ease;
+
+  &.add-task--active {
+    transform: translateX(0);
+  }
 
   .add-task__container {
     display: flex;
@@ -85,6 +96,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    color: var(--color-text);
   }
 
   .add-task__input {

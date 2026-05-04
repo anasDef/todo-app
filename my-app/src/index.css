@@ -2,10 +2,11 @@
 
 :root {
   /* Typography */
-  --font-primary: "Josefin Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial,
+  --font-primary:
+    "Josefin Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial,
     sans-serif;
-  --font-secondary: "Lexend", system-ui, -apple-system, Segoe UI, Roboto, Arial,
-    sans-serif;
+  --font-secondary:
+    "Lexend", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   --font-weight-regular: 400;
   --font-weight-bold: 700;
 
@@ -20,7 +21,7 @@
   --space-8: 64px;
 
   /* Base palette (raw colors from DESIGN.md) */
-  --ivory: #FEF8F5;
+  --ivory: #fef8f5;
   --sand: #efe9e3;
   --stone: #d9cfc7;
   --tan: #c9b59c;
@@ -29,13 +30,13 @@
   --taupe: #948979;
   --oat: #dfd0b8;
   --white: #fff;
-  --brown: #6B5C47;
-  --important-flag-bg: #FFDAD6;
-  --normal-flag-bg: #CCF2B4;
+  --brown: #6b5c47;
+  --important-flag-bg: #ffdad6;
+  --normal-flag-bg: #ccf2b4;
   --normal-flag-text: #327606;
-  --not-important-flag-bg: #FFF2B4;
-  --not-important-flag-text: #A18500;
-  --important-flag-text: #BA1A1A;
+  --not-important-flag-bg: #fff2b4;
+  --not-important-flag-text: #a18500;
+  --important-flag-text: #ba1a1a;
 
   /* Light mode semantic colors */
   --color-bg: var(--ivory);
@@ -46,7 +47,7 @@
   --color-logo: var(--brown);
   --color-button-bg: var(--brown);
   --color-button-text: var(--ivory);
-  --color-header-border: #E7E5E4;
+  --color-header-border: #e7e5e4;
   --color-stat-card-text: var(--brown);
   --color-add-task-bg: var(--white);
 }
@@ -59,7 +60,7 @@
   --color-accent-2: var(--oat);
   --color-text: var(--ivory);
   --color-logo: var(--oat);
-  --color-header-border: #393E46;
+  --color-header-border: #393e46;
   --color-button-bg: var(--oat);
   --color-button-text: var(--charcoal);
   --color-stat-card-text: var(--oat);
@@ -139,11 +140,11 @@ button {
   transition: 0.2s ease;
 
   &:hover {
-      opacity: 0.9;
+    opacity: 0.9;
   }
 
   &.disabled {
-      opacity: 0.2;
-      pointer-events: none;
+    opacity: 0.2;
+    pointer-events: none;
   }
 }

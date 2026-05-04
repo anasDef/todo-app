@@ -17,14 +17,18 @@ import { useEffect, useState } from "react";
  * A tuple of `[state, setState]`, matching `useState`.
  */
 export function useLocalStorage(key, initValue, dep = true) {
-    const [state, setState] = useState(
-        localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : initValue
-    );
+  const [state, setState] = useState(
+    localStorage.getItem(key)
+      ? JSON.parse(localStorage.getItem(key))
+      : initValue,
+  );
 
-    useEffect(() => {
-        localStorage.setItem(key, JSON.stringify(state));
-    }, [dep ? state : null])
+  useEffect(
+    () => {
+      localStorage.setItem(key, JSON.stringify(state));
+    },
+    dep ? [state] : [],
+  );
 
-
-    return [state, setState];
+  return [state, setState];
 }

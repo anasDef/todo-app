@@ -1,22 +1,23 @@
 import { IoClose } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
-import { useId, useState } from "react";
+import { useState } from "react";
+import { getFormattedDate } from "../utils/utils";
 import "./AddTask.css";
 
-function AddTask() {
-  const [task,setTask] = useState({
-    id: useId(),
-    task: "",
+function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
+  const [task, setTask] = useState({
+    taskName: "",
     description: "",
-    state: "",
-    type: "",
-    date: "",
-  })
+    state: "not-started",
+    type: "normal",
+  });
 
-  const handleInputChange = () => {}
+  const handleInputChange = (event, key) => {
+    setTask({ ...task, [key]: event.target.value });
+  };
 
   return (
-    <section className="add-task">
+    <section className={`add-task ${showAddTask ? "add-task--active" : ""}`}>
       <div className="add-task__container container">
         <article className="add-task__card" aria-labelledby="add-task-title">
           {/* Card header */}
@@ -24,26 +25,36 @@ function AddTask() {
             <h1 className="add-task__title" id="add-task-title">
               New Task
             </h1>
-            <button className="add-task__icon-button" type="button" aria-label="Close">
+            <button
+              className="add-task__icon-button"
+              type="button"
+              aria-label="Close"
+              onClick={handleCloseTaskClick}
+            >
               <IoClose aria-hidden="true" />
             </button>
           </header>
 
           {/* Static preview form */}
           <form className="add-task__form">
+            {/* task name */}
             <div className="add-task__field">
               <label className="add-task__label" htmlFor="task-name">
                 Task Name
               </label>
               <input
                 className="add-task__input"
-                id="task-name"
                 name="task-name"
                 placeholder="What needs to be done?"
                 type="text"
+                value={task.taskName}
+                onChange={(e) => {
+                  handleInputChange(e, "taskName");
+                }}
               />
             </div>
 
+            {/* task description */}
             <div className="add-task__field">
               <label className="add-task__label" htmlFor="task-description">
                 Description
@@ -53,19 +64,30 @@ function AddTask() {
                 id="task-description"
                 name="task-description"
                 placeholder="Add details, notes, or links..."
+                value={task.description}
+                onChange={(e) => {
+                  handleInputChange(e, "description");
+                }}
               />
             </div>
 
             {/* Priority radio cards */}
             <fieldset className="add-task__priority">
               <legend className="add-task__label">Priority Level</legend>
-              <div className="add-task__priority-grid" aria-label="Priority options">
+              <div
+                className="add-task__priority-grid"
+                aria-label="Priority options"
+              >
+                {/* important card */}
                 <label className="add-task__priority-card add-task__priority-card--important">
                   <input
                     className="add-task__priority-input"
                     name="priority"
                     type="radio"
                     value="important"
+                    onChange={(e) => {
+                      handleInputChange(e, "type");
+                    }}
                   />
                   <div className="add-task__priority-name">
                     <span className="add-task__priority-dot" />
@@ -74,6 +96,7 @@ function AddTask() {
                   <span className="add-task__priority-note">Do this first</span>
                 </label>
 
+                {/* normal card */}
                 <label className="add-task__priority-card add-task__priority-card--normal">
                   <input
                     className="add-task__priority-input"
@@ -81,6 +104,9 @@ function AddTask() {
                     name="priority"
                     type="radio"
                     value="normal"
+                    onChange={(e) => {
+                      handleInputChange(e, "type");
+                    }}
                   />
                   <div className="add-task__priority-name">
                     <span className="add-task__priority-dot" />
@@ -89,25 +115,48 @@ function AddTask() {
                   <span className="add-task__priority-note">Standard task</span>
                 </label>
 
+                {/* not important card */}
                 <label className="add-task__priority-card add-task__priority-card--low">
                   <input
                     className="add-task__priority-input"
                     name="priority"
                     type="radio"
                     value="not-important"
+                    onChange={(e) => {
+                      handleInputChange(e, "type");
+                    }}
                   />
                   <div className="add-task__priority-name">
                     <span className="add-task__priority-dot" />
                     <span>Not Important</span>
                   </div>
-                  <span className="add-task__priority-note">If time permits</span>
+                  <span className="add-task__priority-note">
+                    If time permits
+                  </span>
                 </label>
               </div>
             </fieldset>
 
             {/* Static action preview */}
             <div className="add-task__actions">
-              <button className="button" type="button">
+              <button
+                className="button"
+                type="button"
+                onClick={() => {
+                  handleAddTaskClick({
+                    ...task,
+                    id: Date.now(),
+                    date: getFormattedDate(),
+                  });
+
+                  setTask({
+                    ...task,
+                    taskName: "",
+                    description: "",
+                    type: "normal",
+                  });
+                }}
+              >
                 <FaPlus className="add-task__submit-icon" aria-hidden="true" />
                 <span>Add Task</span>
               </button>
@@ -120,4 +169,3 @@ function AddTask() {
 }
 
 export default AddTask;
-
