@@ -1,55 +1,61 @@
 {
-  "hash": "eb881bf8",
+  "hash": "0c1c969d",
   "configHash": "74f5b43c",
-  "lockfileHash": "c6ccf1ce",
-  "browserHash": "51ccc16b",
+  "lockfileHash": "276be759",
+  "browserHash": "8b7b5959",
   "optimized": {
     "react-dom/client": {
       "src": "../../node_modules/react-dom/client.js",
       "file": "react-dom_client.js",
-      "fileHash": "598d941a",
+      "fileHash": "5f2a712f",
       "needsInterop": true
     },
     "react-icons/fa": {
       "src": "../../node_modules/react-icons/fa/index.mjs",
       "file": "react-icons_fa.js",
-      "fileHash": "13de97fa",
+      "fileHash": "10561f3e",
       "needsInterop": false
     },
     "react-icons/fa6": {
       "src": "../../node_modules/react-icons/fa6/index.mjs",
       "file": "react-icons_fa6.js",
-      "fileHash": "f258f309",
+      "fileHash": "32620f20",
       "needsInterop": false
     },
     "react-icons/io5": {
       "src": "../../node_modules/react-icons/io5/index.mjs",
       "file": "react-icons_io5.js",
-      "fileHash": "5aa214d2",
+      "fileHash": "051181f5",
       "needsInterop": false
     },
     "react-icons/md": {
       "src": "../../node_modules/react-icons/md/index.mjs",
       "file": "react-icons_md.js",
-      "fileHash": "5750c5d3",
+      "fileHash": "c714d3d8",
       "needsInterop": false
     },
     "react-icons/ri": {
       "src": "../../node_modules/react-icons/ri/index.mjs",
       "file": "react-icons_ri.js",
-      "fileHash": "b1384a80",
+      "fileHash": "6faf0d78",
+      "needsInterop": false
+    },
+    "react-icons/vsc": {
+      "src": "../../node_modules/react-icons/vsc/index.mjs",
+      "file": "react-icons_vsc.js",
+      "fileHash": "a1b3b84f",
       "needsInterop": false
     },
     "react": {
       "src": "../../node_modules/react/index.js",
       "file": "react.js",
-      "fileHash": "d6057fff",
+      "fileHash": "44102005",
       "needsInterop": true
     },
     "react/jsx-dev-runtime": {
       "src": "../../node_modules/react/jsx-dev-runtime.js",
       "file": "react_jsx-dev-runtime.js",
-      "fileHash": "9c41d041",
+      "fileHash": "572e6f17",
       "needsInterop": true
     }
   },

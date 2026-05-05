@@ -5,7 +5,6 @@ import { useEffect, useState } from "react"; // for input
 export default function UserName({ handleEnterClick }) {
   // === Hooks / State ===
   const [name, setName] = useState("");
-  const [closeSection, setCloseSection] = useState(false);
 
   // Effect: listen for a global Enter key to submit the name.
   // Why: allows keyboard submission from anywhere in the dialog for faster UX.
@@ -13,13 +12,15 @@ export default function UserName({ handleEnterClick }) {
   // removal/cleanup would be recommended to avoid duplicate listeners on
   // re-renders, but was avoided here to keep changes strictly to comments.
   useEffect(() => {
-    document.body.addEventListener("keyup", (e) => {
-      if (e.key == "Enter" && name.length > 2) {
-        handleEnterClick(name);
-        setCloseSection(true);
+    const onKeyUp = (e) => {
+      if (e.key === "Enter" && name.trim().length > 2) {
+        handleEnterClick(name.trim());
       }
-    });
-  }, [name]);
+    };
+
+    document.body.addEventListener("keyup", onKeyUp);
+    return () => document.body.removeEventListener("keyup", onKeyUp);
+  }, [name, handleEnterClick]);
 
   // === Handlers ===
   const handleInputChange = (e) => setName(e.target.value);
@@ -30,7 +31,6 @@ export default function UserName({ handleEnterClick }) {
       className="user-name"
       role="dialog"
       aria-labelledby="user-name-title"
-      style={closeSection ? { display: "none" } : null}
     >
       <div className="overlay" aria-hidden="true"></div>
 
@@ -58,8 +58,7 @@ export default function UserName({ handleEnterClick }) {
           className={`button ${name.trim().length > 2 ? "" : "disabled"}`}
           disabled={name.trim().length < 3}
           onClick={() => {
-            handleEnterClick(name);
-            setCloseSection(true);
+            handleEnterClick(name.trim());
           }}
         >
           Enter

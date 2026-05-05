@@ -104,7 +104,7 @@ function App() {
         handleCheckTaskClick={handleCheckTaskClick}
       />
 
-      {JSON.parse(localStorage.getItem("userName")) == "" ? (
+      {userName === "" ? (
         <UserName handleEnterClick={handleEnterNameClick} />
       ) : null}
     </main>
