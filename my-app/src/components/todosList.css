@@ -218,6 +218,17 @@
     font-size: 0.9rem;
     font-weight: var(--font-weight-regular);
     color: var(--color-subtext);
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .todos__task-date {
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-regular);
+    color: var(--color-subtext);
+    margin-top: var(--space-1);
   }
 
   .todos__task-right {

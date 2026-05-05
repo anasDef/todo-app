@@ -2,6 +2,7 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { VscSettings } from "react-icons/vsc";
 import { VscDebugStart } from "react-icons/vsc";
 import { useState } from "react";
+import { getFormattedDate } from "../utils/utils";
 import important from "../assets/important.svg";
 import notImportant from "../assets/not-important.svg";
 import normal from "../assets/normal.svg";
@@ -60,6 +61,7 @@ function TodosList({
           <p className="todos__task-description">
             {task.description ? task.description : "No description"}
           </p>
+          <p className="todos__task-date">{getFormattedDate()}</p>
         </div>
       </div>
 

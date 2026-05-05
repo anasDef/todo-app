@@ -31,8 +31,8 @@ export default function Stats({ user, tasks, handleNewTaskClick }) {
               Good morning, {user ? user : "..."}
             </h1>
             <p className="stats__summary">
-              {tasks.length > 0
-                ? `You have ${tasks.length} tasks to focus on today. Take a deep breath.`
+              {activeTasksCount + notStartedTasksCount > 0
+                ? `You have ${activeTasksCount + notStartedTasksCount} tasks to focus on today. Take a deep breath.`
                 : `You don't have any task today.`}
             </p>
           </div>

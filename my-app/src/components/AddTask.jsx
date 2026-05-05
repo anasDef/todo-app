@@ -64,7 +64,7 @@ function AddTask({ handleAddTaskClick, showAddTask, handleCloseTaskClick }) {
             </div>
 
             {/* task description */}
-            <div className="add-task__field">
+            <div className="add-task__field add-task__field--textarea">
               <label className="add-task__label" htmlFor="task-description">
                 Description
               </label>

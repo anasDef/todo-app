@@ -7,7 +7,7 @@
   transform: translateX(-100%);
   width: 100%;
   background-color: #000000b0;
-  min-height: 100vh;
+  height: 100vh;
   padding-block: var(--space-3);
   color: var(--color-text);
   position: fixed;
@@ -22,6 +22,7 @@
 
   .add-task__container {
     display: flex;
+    height: 100%;
     justify-content: center;
   }
 
@@ -75,6 +76,12 @@
     /* Vertical form rhythm */
     gap: var(--space-3);
     margin-top: var(--space-4);
+  }
+
+  .add-task__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
   }
 
   .add-task__field {
@@ -208,22 +215,6 @@
     justify-content: flex-end;
   }
 
-  .add-task__submit {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-1);
-    min-height: 2.875rem;
-    padding: var(--space-2) var(--space-4);
-    color: var(--color-button-text);
-    background-color: var(--color-button-bg);
-    border: 0;
-    border-radius: var(--space-1);
-    font-size: 0.875rem;
-    line-height: 1;
-    letter-spacing: 0.044em;
-  }
-
   .add-task__submit-icon {
     width: 0.875rem;
     height: 0.875rem;
@@ -235,11 +226,20 @@
     }
 
     .add-task__title {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
 
     .add-task__priority-grid {
       grid-template-columns: 1fr;
+    }
+
+    .add-task__label,
+    .add-task__priority-name {
+      font-size: 0.9rem;
+    }
+
+    .add-task__field--textarea {
+      display: none;
     }
 
     .add-task__submit {
