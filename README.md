@@ -2,7 +2,7 @@
 
 A modern, responsive task management application built with React and Vite. Organize your tasks with ease using intuitive filtering, multiple view options, and theme customization.
 
-**[🚀 Live Demo](https://anas-todo-app-v2.netlify.app/)**
+**[🚀 Live Demo](https://todo-app-6ho.pages.dev)**
 
 ---
 
